@@ -3,6 +3,7 @@ enyo.depends(
 	"$lib/layout",
 	"$lib/onyx",
 	// include application sources
+	"ext",
 	"css",
 	"models",
 	"controllers",

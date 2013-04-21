@@ -1,14 +1,29 @@
 enyo.ready(function () {
-	
+
 	enyo.kind({
-		name: "Bootplate.MessageController",
-		kind: "enyo.Controller",
-		data: "Hello World"
+		name: "PropertyCross.StorageController",
+		kind: enyo.Controller
+	});
+
+	enyo.kind({
+		name: "PropertyCross.LocationsController",
+		kind: enyo.ArrayController
+	});
+
+	enyo.kind({
+		name: "PropertyCross.PanelsController",
+		kind: enyo.Controller,
+		index: 0
 	});
 	
 	enyo.kind({
-		name: "Bootplate.MessagesController",
-		kind: "enyo.ArrayController"
+		name: "PropertyCross.ListingController",
+		kind: enyo.Controller,
+		data: "DEFAULT LISTING"
 	});
-	
+
+	enyo.kind({
+		name: "PropertyCross.ListingsController",
+		kind: enyo.ArrayController
+	});
 });

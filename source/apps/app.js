@@ -1,17 +1,15 @@
 enyo.kind({
-	name: "Bootplate.Application",
+	name: "PropertyCross.Application",
 	kind: "enyo.Application",
-	controllers: [{
-		name: "message",
-		kind: "Bootplate.MessageController"
-	}, {
-		name: "messages",
-		kind: "Bootplate.MessagesController"
-	}],
-	view: "Bootplate.MainView",
+	controllers: [
+		{name: "panels", kind: "PropertyCross.PanelsController"},
+		{name: "listing", kind: "PropertyCross.ListingController"},
+		{name: "listings", kind: "PropertyCross.ListingsController"}
+	],
+	view: "PropertyCross.MainView",
 	addRecord: function (sender, event) {
-		var data = this.controllers.message.get("data");
-		var messages = this.controllers.messages;
-		messages.add({message: data});
+		var data = this.controllers.listing.get("data");
+		var listings = this.controllers.listings;
+		listings.add({message: data});
 	}
 });

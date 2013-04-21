@@ -5,3 +5,66 @@
 .nice-padding {
 	padding: 15px;
 }
+
+.panel-row {
+	margin: 20px 20px 20px 20px;
+}
+
+.panel-row > button {
+	margin-right:16px;
+}
+
+.input-wide {
+	position: relative;
+	display:block;
+	width:auto;
+}
+
+.input-wide-box {
+	display:block;
+	width:auto;
+	margin-right:30px;
+}
+
+.input-wide-box > input {
+	width:100%;
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	background-color: transparent;
+	background-image: none;
+	font-size: 16px;
+	box-shadow: none;
+}
+
+.onyx-input-decorator input {
+  /* reset */
+
+  margin: 0;
+  padding: 0;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: transparent;
+  background-image: none;
+  font-size: 16px;
+  box-shadow: none;
+  /* FIXME: hack for styling reset on Android */
+
+  /* -webkit-appearance: caret;*/
+
+}
+.onyx-input-decorator.onyx-focused input {
+  cursor: text;
+}
+.onyx-input-decorator.onyx-disabled input {
+  cursor: default;
+}
+
+.input-right {
+	position: absolute;
+	right:0;
+	top:3px;
+}
