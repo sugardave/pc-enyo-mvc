@@ -2,6 +2,7 @@ enyo.kind({
 	name: "PropertyCross.Application",
 	kind: "enyo.Application",
 	controllers: [
+		{name: "storage", kind: "PropertyCross.StorageController"},
 		{name: "panels", kind: "PropertyCross.PanelsController"},
 		{name: "listing", kind: "PropertyCross.ListingController"},
 		{name: "listings", kind: "PropertyCross.ListingsController"}

@@ -1,11 +1,6 @@
 enyo.ready(function () {
 
 	enyo.kind({
-		name: "PropertyCross.StorageController",
-		kind: enyo.Controller
-	});
-
-	enyo.kind({
 		name: "PropertyCross.LocationsController",
 		kind: enyo.ArrayController
 	});

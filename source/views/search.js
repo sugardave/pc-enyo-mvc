@@ -4,9 +4,6 @@ enyo.ready(function() {
 		name: "PropertyCross.SearchPanel",
 		kind: enyo.FittableRows,
 		components: [
-			{name: "test", kind: enyo.Controller},
-			{name: "recentLocations", kind: enyo.ArrayController},
-			{name: "suggestedLocations", kind: enyo.ArrayController},
 			{kind: onyx.Toolbar, layoutKind: enyo.FittableColumnsLayout, components: [
 				{kind: enyo.FittableColumns, fit: true, classes: "enyo-center", components: [
 					{fit: true, content: "PropertyCross"}
@@ -48,9 +45,21 @@ enyo.ready(function() {
 			]},
 			{name: "searchingPopup", kind: "PropertyCross.MessagePopup", message: "Searching..."}
 		],
-		create: function() {
+		recentLocations: [],
+		suggestedLocations: [],
+		create: function () {
 			this.inherited(arguments);
-			this.log(this.$.recentLocations);
+
+			try {
+				//this.recentLocations = Storage.get("recent");
+				this.log(app);
+				this.set("recentLocations", app.controllers.storage.retrieve("recent"));
+			}
+			catch (e) {
+				//this.recentLocations = [];
+				this.set("recentLocations", []);
+			}
+
 		}
 	});
 
