@@ -6,11 +6,13 @@ enyo.ready(function () {
 		draggable: false,
 		wrap: false,
 		fit: true,
+		controller: "app.controllers.panels",
 		bindings: [
-			{from: ".app.controllers.panels.index", to: ".index", twoWay: true}
+			{from: ".controller.index", to: ".index", twoWay: true}
 		],
 		components: [
-			{name: "searchPanel", kind: "PropertyCross.SearchPanel"}
+			{name: "searchPanel", kind: "PropertyCross.SearchPanel"},
+			{name: "resultsPanel", kind: "PropertyCross.ResultsPanel"}
 		]
 	});
 	

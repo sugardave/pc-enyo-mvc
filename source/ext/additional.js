@@ -1,4 +1,15 @@
 enyo.ready(function () {
+
+	enyo.kind({
+		name: "PropertyCross.Utils",
+		kind: "Component",
+
+		statics: {
+			numberWithCommas: function(x){
+				return x.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ",");
+			}
+		}
+	});
 	
 	enyo.kind({
 		name: "PropertyCross.MessagePopup",

@@ -64,6 +64,169 @@ enyo.ready(function() {
 				this.set("recentLocations", []);
 			}
 
+		},
+		rendered: function() {
+			this.inherited(arguments);
+			this.$.searchBoxes.setIndex(0);
+
+			this.$.recentList.setCount(this.recentLocations.length);
+			this.$.recentList.refresh();
+		},
+		setupRecentListItem: function (inSender, inEvent) {
+			var i = inEvent.index;
+			this.$.item1.addRemoveClass("onyx-selected", inSender.isSelected(inEvent.index));
+			this.$.listItemRecent.setContent(this.recentLocations[i].search);
+			this.$.listItemMatches.setContent(this.recentLocations[i].matches);
+		},
+		recentListItemTap: function(inSender, inEvent) {
+			var i = inEvent.index;
+			this.$.searchInput.setValue(this.recentLocations[i].search);
+			this.search();
+		},
+		setupSuggestedListItem: function (inSender, inEvent) {
+			var i = inEvent.index;
+			this.$.item2.addRemoveClass("onyx-selected", inSender.isSelected(inEvent.index));
+			this.$.listItemSuggested.setContent(this.suggestedLocations[i].title);
+		},
+		suggestedListItemTap: function (inSender, inEvent) {
+			var i = inEvent.index;
+			this.$.searchInput.setValue(this.suggestedLocations[i].title);
+			this.search();
+		},
+		clearSearchInput: function() {
+			this.$.searchInput.setValue("");
+			this.showRecentList();
+		},
+		searchInputKeypress: function(inSender, inEvent) {
+			if (inEvent.keyCode == 13) {
+				this.search();
+				//inSender.hasNode().blur();
+			}
+		},
+		geoProcess: function(position) {
+			//var latitude = 51.684183;
+			//var longitude = -3.431481;
+			var latitude = position.coords.latitude;
+			var longitude = position.coords.longitude;
+			enyo.log(">>>> Geolocating...");
+			this.$.searchingPopup.show();
+			var jsonp = new enyo.JsonpRequest({url:"http://api.nestoria.co.uk/api", callbackName:"callback"});
+			jsonp.response(this, "processResult");
+			jsonp.error(this, "processError");
+			jsonp.go({
+				pretty : '1',
+				action : 'search_listings',
+				encoding : 'json',
+				listing_type : 'buy',
+				'centre_point': latitude + "," + longitude
+			});
+		},
+		geoError: function(err) {
+			this.showSearchError("Geolocation error: " + err.message);
+			enyo.log(">>>>>> Geolocation error: " + err.code + " > " + err.message);
+		},
+		geolocate: function() {
+			this.$.searchError.setOpen(false);
+
+			if ('geolocation' in navigator) {
+				navigator.geolocation.getCurrentPosition(enyo.bind(this, 'geoProcess'), enyo.bind(this, 'geoError'));
+			} else {
+				this.showSearchError("Geolocation not supported.");
+			}
+		},
+		search: function() {
+			var searchVal = this.$.searchInput.getValue();
+			if (searchVal.length) {
+				enyo.log(">>>> Searching...");
+				this.$.searchingPopup.show();
+				var jsonp = new enyo.JsonpRequest({url:"http://api.nestoria.co.uk/api", callbackName:"callback"});
+				jsonp.response(this, "processResult");
+				jsonp.error(this, "processError");
+				jsonp.go({
+					pretty : '1',
+					action : 'search_listings',
+					encoding : 'json',
+					listing_type : 'buy',
+					'place_name': searchVal
+				});
+			}
+		},
+		processError: function(inSender, inResponse) {
+			this.$.searchingPopup.hide();
+			this.showSearchError("An error occurred while searching. Please check your network connection and try again.");
+		},
+		processResult: function(inSender, inResponse) {
+			this.$.searchingPopup.hide();
+
+			this.searchResults = inResponse.response;
+			var responseCode = this.searchResults.application_response_code;
+			enyo.log(">>>> Response: " + responseCode);
+			if (responseCode === "100" || responseCode === "101" || responseCode === "102") {
+				enyo.log(">>>> Search results: " + this.searchResults.total_results);
+				if (this.searchResults.total_results !== 0) {
+					this.addToSearchHistory({search: this.searchResults.locations[0].title, matches: this.searchResults.total_results});
+				} else {
+					this.showSearchError("There were no properties found for the given location.");
+				}
+				this.showRecentList();
+				//this.doGoResults({data: inResponse});
+				this.log("SETTING RESPONSE FOR RESULTS:");
+				this.log(inResponse);
+				app.controllers.results.set("data", inResponse);
+				app.controllers.panels.set("index", 1);
+			} else if (responseCode === "200" || responseCode === "202") {
+				enyo.log(">>>> Ambiguous search.");
+				this.suggestedLocations = this.searchResults.locations;
+				this.$.suggestedList.setCount(this.suggestedLocations.length);
+				this.showSuggestedList();
+			} else {
+				enyo.log(">>>> Search error.");
+				this.showSearchError("The location given was not recognised.");
+				//this.showRecentList();
+			}
+		},
+		addToSearchHistory: function(currentSearch) {
+			this.recentLocations = this.recentLocations.filter(function(element, index, array) {
+				return (element.search !== currentSearch.search);
+			});
+
+			this.recentLocations.unshift(currentSearch);
+
+			if (this.recentLocations.length > 10 ) {
+				this.recentLocations.pop();
+			}
+
+			this.$.recentList.setCount(this.recentLocations.length);
+			this.$.recentList.refresh();
+
+			try {
+				Storage.set("recent", this.recentLocations);
+			}
+				catch (e) {
+			}
+		},
+		showRecentList: function() {
+			this.$.searchError.setOpen(false);
+			this.$.searchBoxes.setIndex(0);
+			//this.$.recentList.refresh();
+		},
+		showSuggestedList: function() {
+			this.$.searchError.setOpen(false);
+			this.$.searchBoxes.setIndex(1);
+			//this.$.suggestedList.refresh();
+		},
+		showSearchError: function(msg) {
+			if (msg.length === 0) {
+				msg = "There was a problem with your search.";
+			}
+
+			this.$.searchErrorContent.setContent(msg);
+
+			this.$.searchError.setOpen(true);
+			this.$.searchBoxes.setIndex(0);
+		},
+		showFaves: function(inSender, inEvent) {
+			this.doGoFaves({});
 		}
 	});
 

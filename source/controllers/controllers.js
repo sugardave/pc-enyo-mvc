@@ -21,4 +21,10 @@ enyo.ready(function () {
 		name: "PropertyCross.ListingsController",
 		kind: enyo.ArrayController
 	});
+
+	enyo.kind({
+		name: "PropertyCross.ResultsController",
+		//kind: enyo.ArrayController
+		kind: enyo.Controller
+	});
 });
