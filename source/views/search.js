@@ -3,6 +3,9 @@ enyo.ready(function() {
 	enyo.kind({
 		name: "PropertyCross.SearchPanel",
 		kind: enyo.FittableRows,
+		bindings: [
+			{from: ".app.controllers.storage", to: ".storage"}
+		],
 		components: [
 			{kind: onyx.Toolbar, layoutKind: enyo.FittableColumnsLayout, components: [
 				{kind: enyo.FittableColumns, fit: true, classes: "enyo-center", components: [
@@ -53,7 +56,8 @@ enyo.ready(function() {
 			try {
 				//this.recentLocations = Storage.get("recent");
 				this.log(app);
-				this.set("recentLocations", app.controllers.storage.retrieve("recent"));
+				//this.set("recentLocations", app.controllers.storage.retrieve("recent"));
+				this.set("recentLocations", this.storage.retrieve("recent"));
 			}
 			catch (e) {
 				//this.recentLocations = [];
