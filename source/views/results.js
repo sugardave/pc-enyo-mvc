@@ -36,27 +36,14 @@ enyo.ready(function() {
 		listings: [],
 		listingsPage: {},
 		listingsPageChanged: function() {
-			this.log(this.listingsPage);
-			this.log("*****************************************************");
-			this.log(this.controller.data);
 			if (this.listingsPage && typeof this.listingsPage.response !== "undefined") {
 				this.listings = [];
 				this.processResponse(this.listingsPage);
 			}
 		},
-
 		goBack: function() {
-			this.doGoBack();
+			app.controllers.panels.back();
 		},
-
-		initialize: function(json) {
-			if (typeof json.response !== "undefined") {
-				this.listingsPage = json;
-				this.listings = [];
-				this.processResponse(json);
-			}
-		},
-
 		processResponse: function(json) {
 			this.log("PROCESSING:");
 			this.log(json);
@@ -68,7 +55,6 @@ enyo.ready(function() {
 
 			this.$.moreDrawer.setOpen(json.request.page < json.response.total_pages);
 		},
-
 		setupResultsListItem: function(inSender, inEvent) {
 			var i = inEvent.index;
 			this.$.item3.addRemoveClass("onyx-selected", inSender.isSelected(inEvent.index));
@@ -76,7 +62,6 @@ enyo.ready(function() {
 			this.$.listItemPrice.setContent("&pound;" + PropertyCross.Utils.numberWithCommas(this.listings[i].price));
 			this.$.listItemTitle.setContent(this.listings[i].title);
 		},
-
 		getMoreListings: function() {
 			this.$.loadingPopup.show();
 
@@ -93,15 +78,13 @@ enyo.ready(function() {
 				'place_name': this.listingsPage.request.location,
 				'page': this.listingsPage.request.page
 			});
-			},
-
+		},
 		moreError: function(inSender, inResponse) {
 			this.$.loadingPopup.hide();
 
 			enyo.log(">>>> More error.");
-	//		this.showSearchError("An error occurred while searching. Please check your network connection and try again.");
+			//this.showSearchError("An error occurred while searching. Please check your network connection and try again.");
 		},
-
 		moreResult: function(inSender, inResponse) {
 			this.$.loadingPopup.hide();
 
@@ -115,7 +98,6 @@ enyo.ready(function() {
 				enyo.log(">>>> More error.");
 			}
 		},
-
 		resultsListItemTap: function(inSender, inEvent) {
 			var i = inEvent.index;
 			this.doGoListing({data: this.listings[i]});

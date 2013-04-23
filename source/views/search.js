@@ -7,11 +7,15 @@ enyo.ready(function() {
 			{from: ".app.controllers.storage", to: ".storage"}
 		],
 		components: [
-			{kind: onyx.Toolbar, layoutKind: enyo.FittableColumnsLayout, components: [
+			/*{kind: onyx.Toolbar, layoutKind: enyo.FittableColumnsLayout, components: [
 				{kind: enyo.FittableColumns, fit: true, classes: "enyo-center", components: [
 					{fit: true, content: "PropertyCross"}
 				]},
 				{kind: onyx.Button, content: "Faves", ontap: "showFaves"}
+			]},*/
+			{kind: "onyx.Toolbar", components: [
+				{content: "PropertyCross", classes: "header-center"},
+				{kind: "onyx.Button", content: "Faves", classes:"header-button-right", ontap: "showFaves"}
 			]},
 			{classes: "panel-row", content: "Use the form below to search for houses to buy. You can search by place-name, postcode, or click 'My location', to search in your current location!"},
 			{kind: "onyx.InputDecorator", classes: "input-wide panel-row", components: [

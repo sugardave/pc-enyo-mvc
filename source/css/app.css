@@ -6,6 +6,30 @@
 	padding: 15px;
 }
 
+.header-center {
+	display: block;
+	text-align: center;
+}
+
+.header-button-right {
+	position: absolute;
+	right:10px;
+	top: 7px;;
+}
+
+.header-button-left {
+	position: absolute;
+	left:10px;
+	top: 7px;;
+}
+
+.error-drawer > * {
+	background-color: #ffbbbb;
+	padding: 6px 3px;
+	border-top: solid 3px #f00;
+	border-bottom: solid 3px #f00;
+}
+
 .panel-row {
 	margin: 20px 20px 20px 20px;
 }
@@ -13,6 +37,41 @@
 .panel-row > button {
 	margin-right:16px;
 }
+
+.item {
+	position: relative;
+	border-bottom: 1px solid #0E0E0E;
+	padding: 12px 16px;
+	background-color: #333333;
+	color:white;
+}
+
+.item > img {
+	display: inline-block;
+	width: 60px;
+	height: 60px;
+	background-image: url(../../assets/home-w-60.png);
+}
+
+.item.onyx-selected {
+	background-color: MidnightBlue;
+}
+
+.recent {
+	display: inline-block;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	padding: 12px 0;
+}
+
+.matches {
+	display: inline-block;
+	position:absolute;
+	right:24px;
+	top:22px;
+}
+
 
 .input-wide {
 	position: relative;
@@ -40,31 +99,38 @@
 }
 
 .onyx-input-decorator input {
-  /* reset */
+	/* reset */
 
-  margin: 0;
-  padding: 0;
-  border: none;
-  outline: none;
-  cursor: pointer;
-  background-color: transparent;
-  background-image: none;
-  font-size: 16px;
-  box-shadow: none;
-  /* FIXME: hack for styling reset on Android */
+	margin: 0;
+	padding: 0;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	background-color: transparent;
+	background-image: none;
+	font-size: 16px;
+	box-shadow: none;
+	/* FIXME: hack for styling reset on Android */
 
-  /* -webkit-appearance: caret;*/
+	/* -webkit-appearance: caret;*/
 
 }
 .onyx-input-decorator.onyx-focused input {
-  cursor: text;
+	cursor: text;
 }
 .onyx-input-decorator.onyx-disabled input {
-  cursor: default;
+	cursor: default;
 }
 
 .input-right {
 	position: absolute;
 	right:0;
 	top:3px;
+}
+
+.listing-image {
+	display:block;
+	width: 160px;
+	height: 120px;
+	background-image: url(../../assets/home-b-160x120.png);
 }
