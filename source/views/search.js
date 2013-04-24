@@ -59,8 +59,6 @@ enyo.ready(function() {
 
 			try {
 				//this.recentLocations = Storage.get("recent");
-				this.log(app);
-				//this.set("recentLocations", app.controllers.storage.retrieve("recent"));
 				this.set("recentLocations", this.storage.retrieve("recent"));
 			}
 			catch (e) {
@@ -177,7 +175,8 @@ enyo.ready(function() {
 				this.log("SETTING RESPONSE FOR RESULTS:");
 				this.log(inResponse);
 				app.controllers.results.set("data", inResponse);
-				app.controllers.panels.set("index", 1);
+				//app.controllers.panels.set("index", 1);
+				app.controllers.panels.selectPanelByName("resultsPanel");
 			} else if (responseCode === "200" || responseCode === "202") {
 				enyo.log(">>>> Ambiguous search.");
 				this.suggestedLocations = this.searchResults.locations;

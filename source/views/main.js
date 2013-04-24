@@ -8,15 +8,15 @@ enyo.ready(function () {
 		fit: true,
 		controller: "app.controllers.panels",
 		bindings: [
-			{from: ".controller.index", to: ".index", twoWay: true}
+			{from: ".controller.index", to: ".index", twoWay: true},
+			{from: ".selectPanelByName", to: ".controller.selectPanelByName", transform: "bindMethod"}
 		],
 		components: [
 			{name: "searchPanel", kind: "PropertyCross.SearchPanel"},
 			{name: "resultsPanel", kind: "PropertyCross.ResultsPanel"}
 		],
-		create: function() {
-			this.inherited(arguments);
-			this.log(this.controller);
+		bindMethod: function(inMethod) {
+			return enyo.bind(this, inMethod);
 		}
 	});
 	
