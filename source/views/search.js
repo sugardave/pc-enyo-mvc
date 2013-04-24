@@ -7,12 +7,6 @@ enyo.ready(function() {
 			{from: ".app.controllers.storage", to: ".storage"}
 		],
 		components: [
-			/*{kind: onyx.Toolbar, layoutKind: enyo.FittableColumnsLayout, components: [
-				{kind: enyo.FittableColumns, fit: true, classes: "enyo-center", components: [
-					{fit: true, content: "PropertyCross"}
-				]},
-				{kind: onyx.Button, content: "Faves", ontap: "showFaves"}
-			]},*/
 			{kind: "onyx.Toolbar", components: [
 				{content: "PropertyCross", classes: "header-center"},
 				{kind: "onyx.Button", content: "Faves", classes:"header-button-right", ontap: "showFaves"}
@@ -171,11 +165,7 @@ enyo.ready(function() {
 					this.showSearchError("There were no properties found for the given location.");
 				}
 				this.showRecentList();
-				//this.doGoResults({data: inResponse});
-				this.log("SETTING RESPONSE FOR RESULTS:");
-				this.log(inResponse);
 				app.controllers.results.set("data", inResponse);
-				//app.controllers.panels.set("index", 1);
 				app.controllers.panels.selectPanelByName("resultsPanel");
 			} else if (responseCode === "200" || responseCode === "202") {
 				enyo.log(">>>> Ambiguous search.");

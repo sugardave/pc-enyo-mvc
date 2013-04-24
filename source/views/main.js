@@ -13,7 +13,8 @@ enyo.ready(function () {
 		],
 		components: [
 			{name: "searchPanel", kind: "PropertyCross.SearchPanel"},
-			{name: "resultsPanel", kind: "PropertyCross.ResultsPanel"}
+			{name: "resultsPanel", kind: "PropertyCross.ResultsPanel"},
+			{name: "listingsPanel", kind: "PropertyCross.ListingsPanel"}
 		],
 		bindMethod: function(inMethod) {
 			return enyo.bind(this, inMethod);

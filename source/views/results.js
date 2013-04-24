@@ -42,11 +42,9 @@ enyo.ready(function() {
 			}
 		},
 		goBack: function() {
-			app.controllers.panels.back();
+			app.controllers.panels.selectPanelByName("searchPanel");
 		},
 		processResponse: function(json) {
-			this.log("PROCESSING:");
-			this.log(json);
 			this.listings = this.listings.concat(json.response.listings);
 			this.$.resultsList.setCount(this.listings.length);
 			this.$.resultsList.refresh();
@@ -100,7 +98,9 @@ enyo.ready(function() {
 		},
 		resultsListItemTap: function(inSender, inEvent) {
 			var i = inEvent.index;
-			this.doGoListing({data: this.listings[i]});
+			//this.doGoListing({data: this.listings[i]});
+			app.controllers.listings.set("listing", this.listings[i]);
+			app.controllers.panels.selectPanelByName("listingsPanel");
 		}
 	});
 
