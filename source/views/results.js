@@ -1,7 +1,7 @@
 enyo.ready(function() {
 	enyo.kind({
 		name: "PropertyCross.ResultsPanel",
-		kind: "FittableRows",
+		kind: enyo.FittableRows,
 		controller: "app.controllers.results",
 		bindings: [
 			{from: ".controller.data", to: "listingsPage"}
@@ -99,7 +99,7 @@ enyo.ready(function() {
 		resultsListItemTap: function(inSender, inEvent) {
 			var i = inEvent.index;
 			//this.doGoListing({data: this.listings[i]});
-			app.controllers.listings.set("listing", this.listings[i]);
+			app.controllers.listings.set("data", this.listings[i]);
 			app.controllers.panels.selectPanelByName("listingsPanel");
 		}
 	});

@@ -10,6 +10,8 @@ enyo.ready(function () {
 		/* Retrieve the item with the key 'name'. */
 		retrieve: function(name) {
 			var result;
+			this.log("IN RETRIEVE");
+			this.log(result);
 			if(typeof name === "string") {
 				result = localStorage.getItem(name);
 			}

@@ -3,9 +3,6 @@ enyo.ready(function() {
 	enyo.kind({
 		name: "PropertyCross.SearchPanel",
 		kind: enyo.FittableRows,
-		bindings: [
-			{from: ".app.controllers.storage", to: ".storage"}
-		],
 		components: [
 			{kind: "onyx.Toolbar", components: [
 				{content: "PropertyCross", classes: "header-center"},
@@ -50,13 +47,12 @@ enyo.ready(function() {
 		suggestedLocations: [],
 		create: function () {
 			this.inherited(arguments);
+			this.set("storage", app.controllers.storage);
 
 			try {
-				//this.recentLocations = Storage.get("recent");
 				this.set("recentLocations", this.storage.retrieve("recent"));
 			}
 			catch (e) {
-				//this.recentLocations = [];
 				this.set("recentLocations", []);
 			}
 
@@ -193,7 +189,7 @@ enyo.ready(function() {
 			this.$.recentList.refresh();
 
 			try {
-				Storage.set("recent", this.recentLocations);
+				this.storage.set("recent", this.recentLocations);
 			}
 				catch (e) {
 			}

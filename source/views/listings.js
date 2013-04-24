@@ -2,10 +2,10 @@ enyo.ready(function() {
 
 	enyo.kind({
 		name: "PropertyCross.ListingsPanel",
-		kind: "FittableRows",
+		kind: enyo.FittableRows,
 		controller: "app.controllers.listings",
 		bindings: [
-			{from: ".controller.listing", to: "listing"}
+			{from: ".controller.data", to: "listing"}
 		],
 		listing: {},
 
@@ -24,8 +24,7 @@ enyo.ready(function() {
 			]}
 		],
 		listingChanged: function() {
-			if (typeof this.listing !== "undefined" && this.listing !== {}) {
-				this.log(this.listing);
+			if (this.listing && typeof this.listing !== "undefined" && this.listing !== {}) {
 				this.initialize(this.listing); // using this for now until refactor
 			}
 		},

@@ -13,7 +13,8 @@ enyo.ready(function () {
 
 	enyo.kind({
 		name: "PropertyCross.ListingsController",
-		kind: enyo.ArrayController
+		//kind: enyo.ArrayController
+		kind: enyo.Controller
 	});
 
 	enyo.kind({
