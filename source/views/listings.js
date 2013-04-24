@@ -49,7 +49,9 @@ enyo.ready(function() {
 		},
 
 		changeFavorite: function(inSender, inEvent) {
-			this.doChangeFav({data: this.listing});
+			//this.doChangeFav({data: this.listing});
+			app.controllers.favorites.set("data", this.listing);
+
 		}
 	});
 
