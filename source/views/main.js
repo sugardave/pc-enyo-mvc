@@ -18,7 +18,7 @@ enyo.ready(function () {
 			{name: "listingsPanel", kind: "PropertyCross.ListingsPanel"}
 		],
 		bindMethod: function(inMethod) {
-			return enyo.bind(this, inMethod);
+			return this.bindSafely(inMethod);
 		}
 	});
 	

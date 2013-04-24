@@ -6,7 +6,9 @@ enyo.kind({
 		{name: "results", kind: "PropertyCross.ResultsController"},
 		{name: "panels", kind: "PropertyCross.PanelsController"},
 		{name: "listing", kind: "PropertyCross.ListingController"},
-		{name: "listings", kind: "PropertyCross.ListingsController"}
+		{name: "listings", kind: "PropertyCross.ListingsController"},
+		//{name: "favorites", kind: "PropertyCross.FavoritesController"}
+		{name: "favorites", kind: enyo.Controller}
 	],
 	view: "PropertyCross.MainView",
 	addRecord: function (sender, event) {

@@ -13,13 +13,16 @@ enyo.ready(function () {
 
 	enyo.kind({
 		name: "PropertyCross.ListingsController",
-		//kind: enyo.ArrayController
 		kind: enyo.Controller
 	});
 
 	enyo.kind({
 		name: "PropertyCross.ResultsController",
-		//kind: enyo.ArrayController
+		kind: enyo.Controller
+	});
+
+	enyo.kind({
+		name: "PropertyCross.FavoritesController",
 		kind: enyo.Controller
 	});
 });

@@ -3,12 +3,10 @@ enyo.ready(function() {
 	enyo.kind({
 		name: "PropertyCross.FavoritesPanel",
 		kind: enyo.FittableRows,
-
-		events: {
-			onGoBack: "",
-			onGoListing: ""
-		},
-
+		controller: "app.controllers.favorites",
+		bindings: [
+			{from: ".controller.data", to: "listing"}
+		],
 		components: [
 			{kind: "onyx.Toolbar", components: [
 				{name: "favoritesHeader", content: "Favorites", classes: "header-center"},
@@ -47,6 +45,12 @@ enyo.ready(function() {
 
 		rendered: function() {
 			this.inherited(arguments);
+			this.processFavorites(); //using this for now until refactor
+		},
+
+		listingChanged: function() {
+			if (!this.listing) return;
+			this.changeFavorite(this.listing); //using this for now until refactor
 		},
 
 		goBack: function() {
@@ -72,7 +76,7 @@ enyo.ready(function() {
 			var i = inEvent.index;
 			this.$.item4.addRemoveClass("onyx-selected", inSender.isSelected(inEvent.index));
 			this.$.listItemThumb.setAttribute('src', this.favorites[i].thumb_url);
-			this.$.listItemPrice.setContent("&pound;" + Utils.numberWithCommas(this.favorites[i].price));
+			this.$.listItemPrice.setContent("&pound;" + PropertyCross.Utils.numberWithCommas(this.favorites[i].price));
 			this.$.listItemTitle.setContent(this.favorites[i].title);
 		},
 
