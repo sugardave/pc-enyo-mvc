@@ -189,7 +189,7 @@ enyo.ready(function() {
 			this.$.recentList.refresh();
 
 			try {
-				this.storage.set("recent", this.recentLocations);
+				this.storage.store("recent", this.recentLocations);
 			}
 				catch (e) {
 			}
@@ -215,7 +215,7 @@ enyo.ready(function() {
 			this.$.searchBoxes.setIndex(0);
 		},
 		showFaves: function(inSender, inEvent) {
-			this.doGoFaves({});
+			app.controllers.panels.selectPanelByName("favoritesPanel");
 		}
 	});
 

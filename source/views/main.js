@@ -13,6 +13,7 @@ enyo.ready(function () {
 		],
 		components: [
 			{name: "searchPanel", kind: "PropertyCross.SearchPanel"},
+			{name: "favoritesPanel", kind: "PropertyCross.FavoritesPanel"},
 			{name: "resultsPanel", kind: "PropertyCross.ResultsPanel"},
 			{name: "listingsPanel", kind: "PropertyCross.ListingsPanel"}
 		],
