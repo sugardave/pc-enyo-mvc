@@ -59,7 +59,7 @@ enyo.ready(function() {
 		},
 		rendered: function() {
 			this.inherited(arguments);
-			this.$.searchBoxes.setIndex(0);
+			this.$.searchBoxes.selectPanelByName("recentBox");
 
 			this.$.recentList.setCount(this.recentLocations.length);
 			this.$.recentList.refresh();
@@ -196,13 +196,11 @@ enyo.ready(function() {
 		},
 		showRecentList: function() {
 			this.$.searchError.setOpen(false);
-			this.$.searchBoxes.setIndex(0);
-			//this.$.recentList.refresh();
+			this.$.searchBoxes.selectPanelByName("recentBox");
 		},
 		showSuggestedList: function() {
 			this.$.searchError.setOpen(false);
-			this.$.searchBoxes.setIndex(1);
-			//this.$.suggestedList.refresh();
+			this.$.searchBoxes.selectPanelByName("suggestedBox");
 		},
 		showSearchError: function(msg) {
 			if (msg.length === 0) {
@@ -212,7 +210,7 @@ enyo.ready(function() {
 			this.$.searchErrorContent.setContent(msg);
 
 			this.$.searchError.setOpen(true);
-			this.$.searchBoxes.setIndex(0);
+			this.$.searchBoxes.selectPanelByName("recentBox");
 		},
 		showFaves: function(inSender, inEvent) {
 			app.controllers.panels.selectPanelByName("favoritesPanel");
