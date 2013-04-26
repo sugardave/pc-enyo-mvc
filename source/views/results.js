@@ -42,7 +42,8 @@ enyo.ready(function() {
 			}
 		},
 		goBack: function() {
-			app.controllers.panels.selectPanelByName("searchPanel");
+			var ap = app.controllers.panels;
+			ap.selectPanelByName(ap.get("goBack"));
 		},
 		processResponse: function(json) {
 			this.listings = this.listings.concat(json.response.listings);
@@ -98,8 +99,8 @@ enyo.ready(function() {
 		},
 		resultsListItemTap: function(inSender, inEvent) {
 			var i = inEvent.index;
-			//this.doGoListing({data: this.listings[i]});
 			app.controllers.listings.set("data", this.listings[i]);
+			app.controllers.panels.set("goBack", this.name);
 			app.controllers.panels.selectPanelByName("listingsPanel");
 		}
 	});

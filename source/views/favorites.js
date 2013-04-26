@@ -54,7 +54,8 @@ enyo.ready(function() {
 		},
 
 		goBack: function() {
-			app.controllers.panels.selectPanelByName("searchPanel");
+			var ap = app.controllers.panels;
+			ap.selectPanelByName(ap.get("goBack"));
 		},
 
 		initialize: function() {
@@ -82,7 +83,10 @@ enyo.ready(function() {
 
 		favoritesListItemTap: function(inSender, inEvent) {
 			var i = inEvent.index;
-			this.doGoListing({data: this.favorites[i]});
+			//this.doGoListing({data: this.favorites[i]});
+			app.controllers.listings.set("data", this.favorites[i]);
+			app.controllers.panels.set("goBack", this.name);
+			app.controllers.panels.selectPanelByName("listingsPanel");
 		},
 
 		changeFavorite: function(listing) {

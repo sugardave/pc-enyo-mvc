@@ -162,6 +162,7 @@ enyo.ready(function() {
 				}
 				this.showRecentList();
 				app.controllers.results.set("data", inResponse);
+				app.controllers.panels.set("goBack", this.name);
 				app.controllers.panels.selectPanelByName("resultsPanel");
 			} else if (responseCode === "200" || responseCode === "202") {
 				enyo.log(">>>> Ambiguous search.");
@@ -213,6 +214,7 @@ enyo.ready(function() {
 			this.$.searchBoxes.selectPanelByName("recentBox");
 		},
 		showFaves: function(inSender, inEvent) {
+			app.controllers.panels.set("goBack", this.name);
 			app.controllers.panels.selectPanelByName("favoritesPanel");
 		}
 	});

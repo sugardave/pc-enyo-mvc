@@ -29,9 +29,14 @@ enyo.ready(function() {
 			}
 		},
 		goBack: function() {
-			app.controllers.panels.selectPanelByName("resultsPanel");
+			var ap = app.controllers.panels;
+			// TODO: Find a better way to manage differing back states
+			if (this.name === ap.get("goBack")) {
+				ap.selectPanelByName("searchPanel");
+			} else {
+				ap.selectPanelByName(ap.get("goBack"));
+			}
 		},
-
 		initialize: function(json) {
 			if (json !== {}) {
 				this.listing = json;
@@ -43,11 +48,9 @@ enyo.ready(function() {
 				this.$.propertySummary.setContent(json.summary);
 			}
 		},
-
 		setFavorite: function(isFav) {
 		 this.$.fav.setValue(isFav);
 		},
-
 		changeFavorite: function(inSender, inEvent) {
 			//this.doChangeFav({data: this.listing});
 			app.controllers.favorites.set("data", this.listing);
