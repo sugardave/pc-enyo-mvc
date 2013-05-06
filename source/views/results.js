@@ -104,6 +104,36 @@ enyo.ready(function() {
 		resultsListItemTap: function(inSender, inEvent) {
 			var i = inEvent.index;
 			var p, panels = app.controllers.panels.get("panels");
+			var lc;
+
+			app.controllers.panels.set("goBack", this.name);
+			panels.selectPanelByName("listingPanel");
+			p = panels.getActive();
+			this.log("ACTIVE PANEL");
+			this.log(p);
+			lc = p.get("controller");
+			if (!lc) {
+				this.log("NO LISTING CONTROLLER");
+				lc = new PropertyCross.ListingController();
+				//p.set("controller", lc);
+			}
+			lc.set("data", this.listings[i]);
+			p.set("controller", lc);
+
+			return;
+
+			var l = new PropertyCross.ListingController();
+			l.set("data", this.listings[i]);
+			this.log("SETTING CONTROLLER:");
+			this.log(l);
+			p.set("controller", null);
+			p.set("controller", l);
+	
+			//app.controllers.panels.selectPanelByName("listingPanel");
+		},
+		resultsListItemTapFoo: function(inSender, inEvent) {
+			var i = inEvent.index;
+			var p, panels = app.controllers.panels.get("panels");
 			var l = new PropertyCross.ListingController();
 			//l = panels.getActive().get("controller");
 			l.set("data", this.listings[i]);

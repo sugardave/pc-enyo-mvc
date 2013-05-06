@@ -3,7 +3,6 @@ enyo.ready(function() {
 	enyo.kind({
 		name: "PropertyCross.ListingPanel",
 		kind: enyo.FittableRows,
-		//controller: enyo.ObjectController,
 		bindings: [
 			{from: ".controller.img_url", to: ".$.propertyPhoto.src"},
 			{from: ".controller.price", to: ".$.propertyPrice.content", transform: "transformPrice"},
@@ -30,8 +29,9 @@ enyo.ready(function() {
 				{name: "propertySummary", classes: "panel-row"}
 			]}
 		],
-		controllerChanged: function() {
-			this.log(this.bindings[1]);
+		controllerChangedFoo: function() {
+			return;
+			this.log(this.controller);
 			if (!this.controller) return;
 			this.bindings[1].refresh();
 			this.render(); 
@@ -58,7 +58,7 @@ enyo.ready(function() {
 			return inValue;
 		},
 		transformPrice: function(inPrice) {
-			this.log("TRANSFORMING PRICE");
+			this.log("TRANSFORMING PRICE: " + inPrice);
 			if (inPrice) {
 				inPrice = "&pound;" + PropertyCross.Utils.numberWithCommas(inPrice);
 			}
