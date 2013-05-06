@@ -2,7 +2,7 @@ enyo.ready(function() {
 
 	enyo.kind({
 		name: "PropertyCross.PanelsController",
-		kind: enyo.Controller,
+		kind: enyo.ObjectController,
 		index: 0
 	});
 

@@ -1,4 +1,5 @@
 enyo.depends(
+	"listing",
 	"search.js",
 	"favorites.js",
 	"results.js",

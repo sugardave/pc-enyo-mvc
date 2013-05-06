@@ -1,11 +1,12 @@
 enyo.ready(function() {
 
 	enyo.kind({
-		name: "PropertyCross.ListingPanel",
+		name: "PropertyCross.ListingPanelFoo",
 		kind: enyo.FittableRows,
 		controller: "app.controllers.listings",
 		bindings: [
-			{from: ".controller.data", to: "listing"}
+			{from: ".controller.listing", to: "listing"},
+			{from: ".controller.listing.data.price", to: "propertyPrice.content", transform: "transformPrice"}
 		],
 		listing: {},
 
@@ -24,9 +25,19 @@ enyo.ready(function() {
 			]}
 		],
 		listingChanged: function() {
-			if (this.listing && typeof this.listing !== "undefined" && this.listing !== {}) {
+			this.log();
+			this.log(this.listing);
+			if (this.listing && typeof this.listing !== "undefined") {
+				this.log("IN CHECK");
 				this.initialize(this.listing); // using this for now until refactor
 			}
+		},
+		transformPrice: function(inPrice) {
+			this.log("TRANSFORMING PRICE");
+			if (inPrice) {
+				inPrice = "&pound;" + PropertyCross.Utils.numberWithCommas(json.price);
+			}
+			return inPrice;
 		},
 		goBack: function() {
 			var ap = app.controllers.panels;
@@ -42,7 +53,7 @@ enyo.ready(function() {
 				this.listing = json;
 				this.$.propertyPhoto.setSrc('assets/home-b-160x120.png');
 				this.$.propertyPhoto.setSrc(json.img_url);
-				this.$.propertyPrice.setContent("&pound;" + PropertyCross.Utils.numberWithCommas(json.price));
+				//this.$.propertyPrice.setContent("&pound;" + PropertyCross.Utils.numberWithCommas(json.price));
 				this.$.propertyTitle.setContent(json.title);
 				this.$.propertyBedBath.setContent(json.bedroom_number + " bed, " + json.bathroom_number + " bath");
 				this.$.propertySummary.setContent(json.summary);

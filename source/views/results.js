@@ -103,9 +103,21 @@ enyo.ready(function() {
 		},
 		resultsListItemTap: function(inSender, inEvent) {
 			var i = inEvent.index;
-			app.controllers.listings.set("data", this.listings[i]);
+			var p, panels = app.controllers.panels.get("panels");
+			var l = new PropertyCross.ListingController();
+			//l = panels.getActive().get("controller");
+			l.set("data", this.listings[i]);
+			//app.controllers.listings.set("data", this.listings[i]);
+			//app.controllers.listings.set("listing", l);
 			app.controllers.panels.set("goBack", this.name);
-			app.controllers.panels.selectPanelByName("listingPanel");
+			panels.selectPanelByName("listingPanel");
+			p = panels.getActive();
+			this.log("SETTING CONTROLLER:");
+			this.log(l);
+			p.set("controller", null);
+			p.set("controller", l);
+	
+			//app.controllers.panels.selectPanelByName("listingPanel");
 		}
 	});
 

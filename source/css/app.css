@@ -14,13 +14,13 @@
 .header-button-right {
 	position: absolute;
 	right:10px;
-	top: 7px;;
+	top: 7px;
 }
 
 .header-button-left {
 	position: absolute;
 	left:10px;
-	top: 7px;;
+	top: 7px;
 }
 
 .error-drawer > * {

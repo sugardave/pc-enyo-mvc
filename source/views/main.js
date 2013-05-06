@@ -17,6 +17,12 @@ enyo.ready(function () {
 			{name: "resultsPanel", kind: "PropertyCross.ResultsPanel"},
 			{name: "listingPanel", kind: "PropertyCross.ListingPanel"}
 		],
+		create: function() {
+			this.inherited(arguments);
+			//this.$.listingPanel.set("controller", new PropertyCross.ListingController());
+			
+			app.controllers.panels.set("panels", this); // for some later hackery
+		},
 		bindMethod: function(inMethod) {
 			return this.bindSafely(inMethod);
 		}
