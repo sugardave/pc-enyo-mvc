@@ -15,7 +15,7 @@ enyo.ready(function () {
 			{name: "searchPanel", kind: "PropertyCross.SearchPanel"},
 			{name: "favoritesPanel", kind: "PropertyCross.FavoritesPanel"},
 			{name: "resultsPanel", kind: "PropertyCross.ResultsPanel"},
-			{name: "listingsPanel", kind: "PropertyCross.ListingsPanel"}
+			{name: "listingPanel", kind: "PropertyCross.ListingPanel"}
 		],
 		bindMethod: function(inMethod) {
 			return this.bindSafely(inMethod);

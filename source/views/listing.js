@@ -1,7 +1,7 @@
 enyo.ready(function() {
 
 	enyo.kind({
-		name: "PropertyCross.ListingsPanel",
+		name: "PropertyCross.ListingPanel",
 		kind: enyo.FittableRows,
 		controller: "app.controllers.listings",
 		bindings: [

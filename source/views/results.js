@@ -105,7 +105,7 @@ enyo.ready(function() {
 			var i = inEvent.index;
 			app.controllers.listings.set("data", this.listings[i]);
 			app.controllers.panels.set("goBack", this.name);
-			app.controllers.panels.selectPanelByName("listingsPanel");
+			app.controllers.panels.selectPanelByName("listingPanel");
 		}
 	});
 
