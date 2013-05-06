@@ -10,7 +10,7 @@ enyo.ready(function() {
 			{from: ".controller.bedroom_number", to: ".$.propertyBed.content", transform: "transformBed"},
 			{from: ".controller.bathroom_number", to: ".$.propertyBath.content", transform: "transformBath"},
 			{from: ".controller.summary", to: ".$.propertySummary.content"},
-			{from: ".controller.isFavorite", to: ".$.fav.value"}
+			{from: ".controller.favorite", to: ".$.fav.value"}
 		],
 		components: [
 			{kind: "onyx.Toolbar", components: [
@@ -29,13 +29,6 @@ enyo.ready(function() {
 				{name: "propertySummary", classes: "panel-row"}
 			]}
 		],
-		controllerChangedFoo: function() {
-			return;
-			this.log(this.controller);
-			if (!this.controller) return;
-			this.bindings[1].refresh();
-			this.render(); 
-		},
 		goBack: function() {
 			var ap = app.controllers.panels;
 			// TODO: Find a better way to manage differing back states
@@ -58,7 +51,6 @@ enyo.ready(function() {
 			return inValue;
 		},
 		transformPrice: function(inPrice) {
-			this.log("TRANSFORMING PRICE: " + inPrice);
 			if (inPrice) {
 				inPrice = "&pound;" + PropertyCross.Utils.numberWithCommas(inPrice);
 			}

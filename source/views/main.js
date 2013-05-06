@@ -20,7 +20,7 @@ enyo.ready(function () {
 		create: function() {
 			this.inherited(arguments);
 			//this.$.listingPanel.set("controller", new PropertyCross.ListingController());
-			
+
 			app.controllers.panels.set("panels", this); // for some later hackery
 		},
 		bindMethod: function(inMethod) {
