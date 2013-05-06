@@ -43,6 +43,10 @@ enyo.ready(function() {
 		},
 		goBack: function() {
 			var ap = app.controllers.panels;
+			var goBack = ap.get("goBack");
+			if (goBack === this.name) {
+				ap.set("goBack", "searchPanel"); // Sloppy
+			}
 			ap.selectPanelByName(ap.get("goBack"));
 		},
 		processResponse: function(json) {
