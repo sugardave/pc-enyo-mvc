@@ -1,8 +1,8 @@
 enyo.depends(
 	"listing",
+	"results",
 	"search.js",
 	"favorites.js",
-	"results.js",
-	"listing.js",
+	//"results.js",
 	"main.js"
 );

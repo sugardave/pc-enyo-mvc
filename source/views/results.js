@@ -119,35 +119,7 @@ enyo.ready(function() {
 			}
 			lc.set("data", this.listings[i]);
 			p.set("controller", lc);
-
-			return;
-
-			var l = new PropertyCross.ListingController();
-			l.set("data", this.listings[i]);
-			this.log("SETTING CONTROLLER:");
-			this.log(l);
-			p.set("controller", null);
-			p.set("controller", l);
-	
-			//app.controllers.panels.selectPanelByName("listingPanel");
-		},
-		resultsListItemTapFoo: function(inSender, inEvent) {
-			var i = inEvent.index;
-			var p, panels = app.controllers.panels.get("panels");
-			var l = new PropertyCross.ListingController();
-			//l = panels.getActive().get("controller");
-			l.set("data", this.listings[i]);
-			//app.controllers.listings.set("data", this.listings[i]);
-			//app.controllers.listings.set("listing", l);
-			app.controllers.panels.set("goBack", this.name);
-			panels.selectPanelByName("listingPanel");
-			p = panels.getActive();
-			this.log("SETTING CONTROLLER:");
-			this.log(l);
-			p.set("controller", null);
-			p.set("controller", l);
-	
-			//app.controllers.panels.selectPanelByName("listingPanel");
+			return true;
 		}
 	});
 
