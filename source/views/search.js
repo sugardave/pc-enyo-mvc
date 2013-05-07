@@ -161,7 +161,10 @@ enyo.ready(function() {
 					this.showSearchError("There were no properties found for the given location.");
 				}
 				this.showRecentList();
-				app.controllers.results.set("data", inResponse);
+				this.log("SETTING RESULTS CONTROLLER TO: ");
+				this.log(this.searchResults.listings);
+				//app.controllers.results.set("data", inResponse.listings);
+				app.controllers.results.add(this.searchResults.listings);
 				app.controllers.panels.set("goBack", this.name);
 				app.controllers.panels.selectPanelByName("resultsPanel");
 			} else if (responseCode === "200" || responseCode === "202") {

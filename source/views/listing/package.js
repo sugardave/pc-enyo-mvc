@@ -1,3 +1,4 @@
 enyo.depends(
-	"listing.js"
+	"listing.js",
+	"listingItem.js"
 );
